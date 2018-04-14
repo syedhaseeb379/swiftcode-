@@ -30,6 +30,7 @@ public class FeedService {
         catch (Exception e){
             e.printStackTrace();
         }
+        return feedResponseObject;
     }
 
 }

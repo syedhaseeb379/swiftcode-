@@ -7,7 +7,7 @@ body {
 }
 
 #message-pane {
-    background-color: #00aaff;
+    background-color: #eff2b5;
 }
 
 #form-card {
@@ -16,4 +16,11 @@ body {
 
 .material-icons {
     font-size: 40px !important;
+}
+
+.message-card {
+    max-width: 75%;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
 }

@@ -7,7 +7,9 @@ body {
 }
 
 #message-pane {
-    background-color: #000000;
+    background-image: url("/assets/images/chat.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #form-card {

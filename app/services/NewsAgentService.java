@@ -13,6 +13,7 @@ import java.util.concurrent.ExecutionException;
 public class NewsAgentService {
     public NewsAgentResponse getNewsAgentResponse(String query,UUID sessionId){
         NewsAgentResponse newsAgentResponse=new NewsAgentResponse();
+        System.out.println("query = " + query);
         try{
             WSRequest queryRequest=WS.url("https://api.api.ai/api/query");
             CompletionStage<WSResponse> responsePromise=queryRequest
@@ -21,14 +22,15 @@ public class NewsAgentService {
                     .setQueryParameter("lang","en")
                     .setQueryParameter("sessionId",sessionId.toString())
                     .setQueryParameter("timestamp","2018-13-04T16:57:23+0530")
-                    .setHeader("Authorization","Bearer 054a388ef08e46c3beb61cd9a12dd13f")
+                    .setHeader("Authorization","Bearer 946df4ead6524dbcaeb5c6c2409462b6")
                     .get();
             JsonNode response=responsePromise.thenApply(WSResponse::asJson).toCompletableFuture().get();
+            System.out.println("response = " + response);
             newsAgentResponse.query = response.get("result").get("parameters").get("keyword").asText().isEmpty() ?
-                    (response.get("result").get("parameters").get("source").asText().isEmpty()
-                            ? response.get("result").get("parameters").get("category").asText()
-                            : response.get("result").get("parameters").get("source").asText() )
-                    : response.get("result").get("parameters").get("keyword").asText() ;
+                                     (response.get("result").get("parameters").get("source").asText().isEmpty()
+                                            ? response.get("result").get("parameters").get("category").asText()
+                                            : response.get("result").get("parameters").get("source").asText() )
+                                    : response.get("result").get("parameters").get("keyword").asText() ;
         }
         catch(Exception e)
         {
